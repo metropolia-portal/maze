@@ -27,15 +27,18 @@ public class Mouse : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		RaycastHit hit;
 		Transform model = transform.Find("MouseModel").transform;
 		Vector3 planarVelocity;
 		
 		windupLeft -= Time.deltaTime;
 	
 		
-		rigidbody.velocity = new Vector3 (inputManager.GetAcceleration().x*speedModifier,-1,inputManager.GetAcceleration().y*speedModifier);
+		rigidbody.velocity = new Vector3 (inputManager.GetAcceleration().x*speedModifier,rigidbody.velocity.y,inputManager.GetAcceleration().y*speedModifier);
 		//Quaternion rot = Quaternion.Slerp(model.rotation, Quaternion.LookRotation(model.position + new Vector3(inputManager.GetAcceleration().x, 0, inputManager.GetAcceleration().z)), rotSpeed * Time.deltaTime);
-		
+		//if (Physics.Raycast(transform.position, Vector3.down, out hit)) {
+		//	transform.position = hit.point+Vector3.up*1.5f;
+		//}
 		planarVelocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
 		
 		if (planarVelocity.magnitude > 0.5f)

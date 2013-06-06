@@ -51,10 +51,12 @@ public class GameManager : MonoBehaviour {
 			{
 				EndGame(false);
 			}	
+			/*
 			cam.camera.transform.localPosition = new Vector3(
 				Mathf.Clamp(mouse.transform.localPosition.x, cameraBounds.min.x + cameraBoundsHalfWidth, cameraBounds.max.x - cameraBoundsHalfWidth),
 				cam.camera.transform.localPosition.y,
 				Mathf.Clamp(mouse.transform.localPosition.z, cameraBounds.min.z + cameraBoundsHalfHeight, cameraBounds.max.z - cameraBoundsHalfHeight));
+				*/
 		}
 		
 	}
