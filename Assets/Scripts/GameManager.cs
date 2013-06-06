@@ -24,7 +24,13 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		statusLine.text = inputManager.GetAcceleration().ToString();
+		statusLine.text = Mathf.Floor (mouse.GetComponent<MouseScript>().GetWindupLeft()).ToString();
+		
+		if (mouse.GetComponent<MouseScript>().GetWindupLeft() <=0) 
+		{
+			statusLine.text = "Defeat!";
+			Time.timeScale = 0;
+		}
 		
 		
 		
