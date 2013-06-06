@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MouseScript : MonoBehaviour {
+public class Mouse : MonoBehaviour {
 	
 	
 	public float windupAtStart = 30;

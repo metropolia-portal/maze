@@ -24,12 +24,11 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		statusLine.text = Mathf.Floor (mouse.GetComponent<MouseScript>().GetWindupLeft()).ToString();
+		statusLine.text = Mathf.Floor (mouse.GetComponent<Mouse>().GetWindupLeft()).ToString();
 		
-		if (mouse.GetComponent<MouseScript>().GetWindupLeft() <=0) 
+		if (mouse.GetComponent<Mouse>().GetWindupLeft() <=0) 
 		{
-			statusLine.text = "Defeat!";
-			Time.timeScale = 0;
+			OnGameOver(false);
 		}
 		
 		
@@ -39,5 +38,8 @@ public class GameManager : MonoBehaviour {
 			cam.camera.transform.localPosition.y,
 			Mathf.Clamp(mouse.transform.localPosition.z, cameraBounds.min.z + cameraBoundsHalfHeight, cameraBounds.max.z - cameraBoundsHalfHeight));
 		
+	}
+	
+	public void OnGameOver(bool victory) {
 	}
 }

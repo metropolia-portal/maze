@@ -16,8 +16,7 @@ public class ExitTrigger : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if (other.gameObject.tag == "Player") {
-			Time.timeScale = 0;
-			GameObject.Find("GameManager").GetComponent<GameManager>().statusLine.text = "Victory!";
+			GameObject.Find("GameManager").GetComponent<GameManager>().OnGameOver(true);
 		}
 	}
 }

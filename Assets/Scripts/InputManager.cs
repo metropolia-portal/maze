@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour {
 		
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.LoadLevel("MazeLevel");
+			Time.timeScale = 1;
 		}
 	}
 	
