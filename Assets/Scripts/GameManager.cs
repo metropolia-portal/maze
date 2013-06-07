@@ -27,8 +27,6 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		Debug.Log(gameState);
-		
 		if (inputManager.IsEscapeButtonDown()) {
 			RestartGame();
 		}
@@ -51,12 +49,12 @@ public class GameManager : MonoBehaviour {
 			{
 				EndGame(false);
 			}	
-			/*
+			
 			cam.camera.transform.localPosition = new Vector3(
 				Mathf.Clamp(mouse.transform.localPosition.x, cameraBounds.min.x + cameraBoundsHalfWidth, cameraBounds.max.x - cameraBoundsHalfWidth),
 				cam.camera.transform.localPosition.y,
 				Mathf.Clamp(mouse.transform.localPosition.z, cameraBounds.min.z + cameraBoundsHalfHeight, cameraBounds.max.z - cameraBoundsHalfHeight));
-				*/
+				
 		}
 		
 	}
@@ -86,10 +84,10 @@ public class GameManager : MonoBehaviour {
 		
 		if (victory) {
 			gameState = GameState.Victory;
-			statusLine.text = "Victory!\nTime score bonus: " + (GetTimeLeft()*55).ToString();
-		}else{
-			gameState = GameState.Defeat;
-			statusLine.text = "Defeat!\n";	
+			statusLine.text = "Victory!\nTime score bonus: " + (GetTimeLeft()*55).ToString(); 
+		} else {
+			gameState = GameState.Defeat; 
+			statusLine.text = "Defeat!\n"; 
 		}
 	}
 }

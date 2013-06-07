@@ -27,13 +27,17 @@ public class InputManager : MonoBehaviour {
 		}
 		
 #if UNITY_ANDROID
-		acceleration = Input.acceleration*sensitivity;
+		acceleration = Input.acceleration;
 		isButtonDown = Input.touchCount == 1;
 		
 #else
-		acceleration = new Vector3 (2*Input.mousePosition.x/Screen.width - 1, 2*Input.mousePosition.y/Screen.height - 1, 0)*sensitivity;
+		acceleration = new Vector3 (2*Input.mousePosition.x/Screen.width - 1, 2*Input.mousePosition.y/Screen.height - 1, 0);
 		isButtonDown = Input.GetMouseButtonDown(0);
 #endif
+		
+		acceleration.x = Mathf.Clamp(acceleration.x, -0.5f, 0.5f) * sensitivity;
+		acceleration.y = Mathf.Clamp(acceleration.y, -0.5f, 0.5f) * sensitivity;
+		
 	}
 	
 	void  OnApplicationPause(bool pauseStatus) {

@@ -11,34 +11,51 @@ public class Mouse : MonoBehaviour {
 	float rotSpeed = 10;
 	
 	float windupLeft;
-	
 		
-	float speedModifier = 0.5f;
+	public float defaultSpeed = 0.5f;
+	float speedModifier = 1;
+	bool controlsEnabled = true;
+	Vector3 savedVelocity;
+	Transform model;
 
 	// Use this for initialization
 	void Start () {
 		windupLeft = windupAtStart;
+		model = transform.Find("MouseModel").transform;
 	}
 	
 	public float GetWindupLeft() {
 		return windupLeft;
 	}
 	
+	public void SetSpeedModifier(float m) {
+		speedModifier = m;
+	}
+	
+	public void EnableControls() {
+		controlsEnabled = true;
+	}
+	
+	public void DisableControls() {
+		if (!controlsEnabled) return;
+		controlsEnabled = false;
+		savedVelocity = rigidbody.velocity / speedModifier;
+	}
+	
 	// Update is called once per frame
 	void Update () {
-		
+		float speed = speedModifier * defaultSpeed;
 		RaycastHit hit;
-		Transform model = transform.Find("MouseModel").transform;
 		Vector3 planarVelocity;
 		
 		windupLeft -= Time.deltaTime;
 	
+		if (controlsEnabled) {
+			rigidbody.velocity = new Vector3 (inputManager.GetAcceleration().x*speed,0,inputManager.GetAcceleration().y*speed);
+		} else {
+			rigidbody.velocity = savedVelocity * speedModifier;
+		}
 		
-		rigidbody.velocity = new Vector3 (inputManager.GetAcceleration().x*speedModifier,rigidbody.velocity.y,inputManager.GetAcceleration().y*speedModifier);
-		//Quaternion rot = Quaternion.Slerp(model.rotation, Quaternion.LookRotation(model.position + new Vector3(inputManager.GetAcceleration().x, 0, inputManager.GetAcceleration().z)), rotSpeed * Time.deltaTime);
-		//if (Physics.Raycast(transform.position, Vector3.down, out hit)) {
-		//	transform.position = hit.point+Vector3.up*1.5f;
-		//}
 		planarVelocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
 		
 		if (planarVelocity.magnitude > 0.5f)
