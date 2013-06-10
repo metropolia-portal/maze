@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class MazeGameManager : MonoBehaviour {
 	
 	public GUIText statusLine;
 	public GameObject world;

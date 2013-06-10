@@ -16,7 +16,7 @@ public class ExitTrigger : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		
 		if (other.gameObject.tag == "Player") {
-			GameObject.Find("GameManager").GetComponent<GameManager>().EndGame(true);
+			GameObject.Find("GameManager").GetComponent<MazeGameManager>().EndGame(true);
 		}
 	}
 }

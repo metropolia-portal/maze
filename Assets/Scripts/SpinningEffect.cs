@@ -7,11 +7,6 @@ public class SpinningEffect : MonoBehaviour {
 	
 	float phase = 0;
 	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		phase += Time.deltaTime;

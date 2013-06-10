@@ -12,11 +12,6 @@ public class MouseSpeedModifier : MonoBehaviour {
 		mouse =  GameObject.Find("Mouse").GetComponent<Mouse>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player")) {
 			mouse.SetSpeedModifier(speedModifier);
